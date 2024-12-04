@@ -12,3 +12,4 @@
 /home/mango/codes/Blackjack/obj/Debug/net8.0/Blackjack.pdb
 /home/mango/codes/Blackjack/obj/Debug/net8.0/Blackjack.genruntimeconfig.cache
 /home/mango/codes/Blackjack/obj/Debug/net8.0/ref/Blackjack.dll
+/home/mango/codes/Blackjack/obj/Debug/net8.0/Blackjack.sourcelink.json

@@ -9,82 +9,63 @@ namespace Blackjack
 {
     internal class Karty
     {
-        Random rand = new Random();
+        Random rand;
 
-        Dictionary<string, int> cards = new Dictionary<string, int> { };
+        List<KeyValuePair<string, int>> cards;
+
+        public int numberOfDecks;
+
+        public Karty(int numberOfDecks){
+            this.numberOfDecks = numberOfDecks;
+            rand = new Random();
+            cards = new List<KeyValuePair<string, int>>();
+
+            generateDeck(numberOfDecks);
+        }
 
         public KeyValuePair<string, int> pullCard()
         {
-            if (cards.Count <= 0) generateDeck();
+            if (cards.Count <= 0) generateDeck(numberOfDecks);
 
             int cisloKarty = rand.Next(cards.Count);
 
             KeyValuePair<string, int> karta = cards.ElementAt(cisloKarty);
 
-            cards.Remove(karta.Key);
+            cards.Remove(cards.Find(k => k.Key == karta.Key));
 
             return karta;
         }
 
-        void generateDeck()
+        void generateDeck(int numberOfDecks)
         {
-            cards.Add("2 of Spades", 2);
-            cards.Add("3 of Spades", 3);
-            cards.Add("4 of Spades", 4);
-            cards.Add("5 of Spades", 5);
-            cards.Add("6 of Spades", 6);
-            cards.Add("7 of Spades", 7);
-            cards.Add("8 of Spades", 8);
-            cards.Add("9 of Spades", 9);
-            cards.Add("10 of Spades", 10);
-            cards.Add("Jack of Spades", 10);
-            cards.Add("Queen of Spades", 10);
-            cards.Add("King of Spades", 10);
-            cards.Add("Ace of Spades", 11);
+            System.Console.Write($"Premiešavanie {numberOfDecks} balíčkov kariet");
+            Thread.Sleep(1000);
+            System.Console.Write(".");
+            Thread.Sleep(1000);
+            System.Console.Write(".");
+            Thread.Sleep(1000);
+            System.Console.WriteLine(".");
 
-            cards.Add("2 of Hearts", 2);
-            cards.Add("3 of Hearts", 3);
-            cards.Add("4 of Hearts", 4);
-            cards.Add("5 of Hearts", 5);
-            cards.Add("6 of Hearts", 6);
-            cards.Add("7 of Hearts", 7);
-            cards.Add("8 of Hearts", 8);
-            cards.Add("9 of Hearts", 9);
-            cards.Add("10 of Hearts", 10);
-            cards.Add("Jack of Hearts", 10);
-            cards.Add("Queen of Hearts", 10);
-            cards.Add("King of Hearts", 10);
-            cards.Add("Ace of Hearts", 11);
+            for(int i = 0; i < numberOfDecks; i++){
+                string[] suits = { "Spades", "Hearts", "Diamonds", "Clubs" };
+                string[] values = { "2", "3", "4", "5", "6", "7", "8", "9", "10", "Jack", "Queen", "King", "Ace" };
+                Dictionary<string, int> cardValues = new Dictionary<string, int>()
+                {
+                    { "2", 2 }, { "3", 3 }, { "4", 4 }, { "5", 5 }, { "6", 6 },
+                    { "7", 7 }, { "8", 8 }, { "9", 9 }, { "10", 10 }, { "Jack", 10 },
+                    { "Queen", 10 }, { "King", 10 }, { "Ace", 11 }
+                };
 
-            cards.Add("2 of Diamonds", 2);
-            cards.Add("3 of Diamonds", 3);
-            cards.Add("4 of Diamonds", 4);
-            cards.Add("5 of Diamonds", 5);
-            cards.Add("6 of Diamonds", 6);
-            cards.Add("7 of Diamonds", 7);
-            cards.Add("8 of Diamonds", 8);
-            cards.Add("9 of Diamonds", 9);
-            cards.Add("10 of Diamonds", 10);
-            cards.Add("Jack of Diamonds", 10);
-            cards.Add("Queen of Diamonds", 10);
-            cards.Add("King of Diamonds", 10);
-            cards.Add("Ace of Diamonds", 11);
-
-            cards.Add("2 of Clubs", 2);
-            cards.Add("3 of Clubs", 3);
-            cards.Add("4 of Clubs", 4);
-            cards.Add("5 of Clubs", 5);
-            cards.Add("6 of Clubs", 6);
-            cards.Add("7 of Clubs", 7);
-            cards.Add("8 of Clubs", 8);
-            cards.Add("9 of Clubs", 9);
-            cards.Add("10 of Clubs", 10);
-            cards.Add("Jack of Clubs", 10);
-            cards.Add("Queen of Clubs", 10);
-            cards.Add("King of Clubs", 10);
-            cards.Add("Ace of Clubs", 11);
-
+                foreach (var suit in suits)
+                {
+                    foreach (var value in values)
+                    {
+                        string cardName = $"{value} of {suit}";
+                        int cardValue = cardValues[value];
+                        cards.Add(new KeyValuePair<string, int>(cardName, cardValue));
+                    }
+                }
+            }
         }
-
     }
 }
