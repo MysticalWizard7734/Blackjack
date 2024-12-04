@@ -1,0 +1,14 @@
+/home/mango/codes/Blackjack/obj/Debug/net8.0/Blackjack.GeneratedMSBuildEditorConfig.editorconfig
+/home/mango/codes/Blackjack/obj/Debug/net8.0/Blackjack.AssemblyInfoInputs.cache
+/home/mango/codes/Blackjack/obj/Debug/net8.0/Blackjack.AssemblyInfo.cs
+/home/mango/codes/Blackjack/obj/Debug/net8.0/Blackjack.csproj.CoreCompileInputs.cache
+/home/mango/codes/Blackjack/bin/Debug/net8.0/Blackjack
+/home/mango/codes/Blackjack/bin/Debug/net8.0/Blackjack.deps.json
+/home/mango/codes/Blackjack/bin/Debug/net8.0/Blackjack.runtimeconfig.json
+/home/mango/codes/Blackjack/bin/Debug/net8.0/Blackjack.dll
+/home/mango/codes/Blackjack/bin/Debug/net8.0/Blackjack.pdb
+/home/mango/codes/Blackjack/obj/Debug/net8.0/Blackjack.dll
+/home/mango/codes/Blackjack/obj/Debug/net8.0/refint/Blackjack.dll
+/home/mango/codes/Blackjack/obj/Debug/net8.0/Blackjack.pdb
+/home/mango/codes/Blackjack/obj/Debug/net8.0/Blackjack.genruntimeconfig.cache
+/home/mango/codes/Blackjack/obj/Debug/net8.0/ref/Blackjack.dll
