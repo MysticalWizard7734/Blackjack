@@ -10,7 +10,10 @@ namespace Blackjack
     {
         static void Main(string[] args)
         {
-            int numberOfDecks = 4;
+            System.Console.WriteLine("Dealer hits at soft 17");
+            System.Console.WriteLine("Blackjack beats 21");
+
+            int numberOfDecks = 1;
 
             int playerMoney = 1000;
 
@@ -24,7 +27,7 @@ namespace Blackjack
 
             while (true)
             {
-                System.Console.Write("Stávky sa otvárajú: ");
+                System.Console.Write($"Stávky sa otvárajú (kredity {hrac1.money}): ");
                 
                 string input = System.Console.ReadLine();
 
@@ -45,8 +48,9 @@ namespace Blackjack
                     System.Console.WriteLine(card.Key);
                     dealer.addScore(card.Value);
 
-                    card = karty.pullCard();
-                    dealer.addScore(card.Value);
+                    KeyValuePair<string, int> cardHiden = karty.pullCard();
+                    System.Console.WriteLine("Skrytá karta");
+                    dealer.addScore(cardHiden.Value);
 
                     while(hrac1.state == "playing")
                     {
@@ -62,7 +66,19 @@ namespace Blackjack
                         else hrac1.Stand();
                     }
 
-                    hrac1.evaluateGame(dealer.score, bet);
+                    
+                    System.Console.WriteLine(cardHiden.Key);
+                    System.Console.WriteLine($"Dealer má {dealer.score}");
+
+                    while(dealer.state == "playing" && hrac1.state != "lost"){
+                        card = karty.pullCard();
+                        dealer.addScore(card.Value);
+                        System.Console.WriteLine(card.Key);
+                        System.Console.WriteLine($"Dealer má {dealer.score}");
+                    }
+
+                    hrac1.evaluateGame(dealer.state, dealer.score, bet);
+                    dealer.endGame();
                 }
                 else System.Console.WriteLine($"Pane, {input} nie je číslo...");
 

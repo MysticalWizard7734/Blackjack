@@ -35,14 +35,21 @@ namespace Blackjack
             }
 
             if (score > 21) state = "lost";
-            else if (score < 21) state = "playing";
+            else if (score < 17 || (score == 17 && numberOfAces > 0)) state = "playing";
             else if (score == 21 && cardsPulled == 2) state = "blackjack";
-            else if (score == 21) state = "won";
+            else if (score == 21) state = "stand";
+            else if (score >= 17) state = "stand";
         }
 
         public void Stand()
         {
             state = "stand";
+        }
+
+        public void endGame(){
+            score = 0;
+            cardsPulled = 0;
+            numberOfAces = 0;
         }
     }
 }

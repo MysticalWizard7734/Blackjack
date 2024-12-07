@@ -36,15 +36,9 @@ namespace Blackjack
                 numberOfAces--;
             }
 
-            if (score > 21) 
-            {
-                state = "lost";
-            }
+            if (score > 21) state = "lost";
             else if (score < 21) state = "playing";
-            else if (score == 21 && cardsPulled == 2) 
-            {
-                state = "blackjack";
-            }
+            else if (score == 21 && cardsPulled == 2) state = "blackjack";
             else if (score == 21) state = "stand";
         }
 
@@ -58,18 +52,28 @@ namespace Blackjack
             state = "stand";
         }
 
-        public void evaluateGame(int dealerScore, int bet){
+        public void evaluateGame(string dealerState, int dealerScore, int bet){
             if(state == "lost"){            
                 System.Console.WriteLine("Hrac prehral");
             }
-            else if (state == "stand"){
-                System.Console.WriteLine("Hrac ziskava 2,5 nasobok vkladu");
+            else if (score == 21 && state != "blackjack" && dealerState == "blackjack"){
+                System.Console.WriteLine("Hrac prehral");
+            }
+            else if (state == "stand" && (dealerState == "lost" || (dealerScore - score < 0))){
+                System.Console.WriteLine("Hrac ziskava 2 nasobok vkladu");
                 money = money + (bet * 2);
             }
-            else if(state == "blackjack"){
+            else if(state == "blackjack" && dealerState != "blackjack"){
                 System.Console.WriteLine("Hrac ziskava 2,5 nasobok vkladu");
                 money = money + (int)(bet * 2.5);
             }
+            else {
+                System.Console.WriteLine("Remíza");
+                money = money + bet; //push
+            }
+            score = 0;
+            cardsPulled = 0;
+            numberOfAces = 0;
         }
     }
 }
